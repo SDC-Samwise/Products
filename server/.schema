@@ -1,0 +1,58 @@
+CREATE TABLE products (
+    id INT NOT NULL AUTO_INCREMENT,
+    name VARCHAR(255) NOT NULL,
+    slogan VARCHAR(255) NOT NULL,
+    description VARCHAR(255) NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    default_price Number NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE cart (
+    id INT NOT NULL AUTO_INCREMENT,
+    user_session VARCHAR(255) NOT NULL,
+    product_id VARCHAR(255) NOT NULL,
+    active boolean NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE features (
+    id INT NOT NULL AUTO_INCREMENT,
+    product_id VARCHAR(255) NOT NULL,
+    feature VARCHAR(255) NOT NULL,
+    value VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE photos (
+    id INT NOT NULL AUTO_INCREMENT,
+    styleId INT NOT NULL,
+    url VARCHAR(255) NOT NULL,
+    thumbnail_url VARCHAR(255) NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE related (
+    id INT NOT NULL AUTO_INCREMENT,
+    current_product_id INT NOT NULL,
+    related_product_id INT NOT NULL
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE skus (
+    id INT NOT NULL AUTO_INCREMENT,
+    styleId INT NOT NULL,
+    size VARCHAR(255) NOT NULL,
+    quantity INT NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE styles (
+    id INT NOT NULL AUTO_INCREMENT,
+    productId INT NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    sale_price VARCHAR(255) NOT NULL,
+    original_price VARCHAR(255) NOT NULL,
+    default_style boolean NOT NULL,
+    PRIMARY KEY (id)
+);
