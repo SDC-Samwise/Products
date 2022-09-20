@@ -1,58 +1,113 @@
-CREATE TABLE products (
-    id INT NOT NULL AUTO_INCREMENT,
-    name VARCHAR(255) NOT NULL,
-    slogan VARCHAR(255) NOT NULL,
-    description VARCHAR(255) NOT NULL,
-    category VARCHAR(255) NOT NULL,
-    default_price Number NULL,
-    PRIMARY KEY (id)
-);
+BEGIN;
 
-CREATE TABLE cart (
-    id INT NOT NULL AUTO_INCREMENT,
-    user_session VARCHAR(255) NOT NULL,
-    product_id VARCHAR(255) NOT NULL,
-    active boolean NOT NULL,
-    PRIMARY KEY (id)
-);
+-- Database: sdc
 
-CREATE TABLE features (
-    id INT NOT NULL AUTO_INCREMENT,
-    product_id VARCHAR(255) NOT NULL,
-    feature VARCHAR(255) NOT NULL,
-    value VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
-);
+-- DROP DATABASE IF EXISTS sdc;
 
-CREATE TABLE photos (
-    id INT NOT NULL AUTO_INCREMENT,
-    styleId INT NOT NULL,
-    url VARCHAR(255) NOT NULL,
-    thumbnail_url VARCHAR(255) NOT NULL,
-    PRIMARY KEY (id)
-);
+CREATE DATABASE sdc
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'C.UTF-8'
+    LC_CTYPE = 'C.UTF-8'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
 
-CREATE TABLE related (
-    id INT NOT NULL AUTO_INCREMENT,
-    current_product_id INT NOT NULL,
-    related_product_id INT NOT NULL
-    PRIMARY KEY (id)
-);
+GRANT ALL ON DATABASE sdc TO postgres;
 
-CREATE TABLE skus (
-    id INT NOT NULL AUTO_INCREMENT,
-    styleId INT NOT NULL,
-    size VARCHAR(255) NOT NULL,
-    quantity INT NOT NULL,
-    PRIMARY KEY (id)
-);
+GRANT ALL ON DATABASE sdc TO sdc;
 
-CREATE TABLE styles (
-    id INT NOT NULL AUTO_INCREMENT,
-    productId INT NOT NULL,
-    name VARCHAR(255) NOT NULL,
-    sale_price VARCHAR(255) NOT NULL,
-    original_price VARCHAR(255) NOT NULL,
-    default_style boolean NOT NULL,
-    PRIMARY KEY (id)
-);
+GRANT ALL ON DATABASE sdc TO PUBLIC;
+
+CREATE TABLE IF NOT EXISTS public.cart
+(
+    id integer NOT NULL,
+    user_session integer,
+    product_id integer,
+    active boolean,
+    CONSTRAINT cart_pkey PRIMARY KEY (id)
+)
+
+CREATE TABLE IF NOT EXISTS public.features
+(
+    id integer NOT NULL,
+    product_id integer,
+    feature text COLLATE pg_catalog."default",
+    value text COLLATE pg_catalog."default",
+    CONSTRAINT features_pkey PRIMARY KEY (id),
+    CONSTRAINT features FOREIGN KEY (product_id)
+        REFERENCES public.products (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+)
+
+CREATE TABLE IF NOT EXISTS public.photos
+(
+    id integer NOT NULL,
+    styleid integer,
+    url text COLLATE pg_catalog."default",
+    thumbnail_url text COLLATE pg_catalog."default",
+    CONSTRAINT photos_pkey PRIMARY KEY (id)
+)
+
+CREATE TABLE IF NOT EXISTS public.products
+(
+    id integer NOT NULL,
+    name text COLLATE pg_catalog."default",
+    slogan text COLLATE pg_catalog."default",
+    description text COLLATE pg_catalog."default",
+    category text COLLATE pg_catalog."default",
+    default_price integer,
+    CONSTRAINT "Products_pkey" PRIMARY KEY (id)
+)
+
+CREATE TABLE IF NOT EXISTS public.related
+(
+    id integer NOT NULL,
+    current_product_id integer,
+    related_product_id integer,
+    CONSTRAINT related_pkey PRIMARY KEY (id),
+    CONSTRAINT current FOREIGN KEY (current_product_id)
+        REFERENCES public.products (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
+
+CREATE TABLE IF NOT EXISTS public.skus
+(
+    id integer NOT NULL,
+    styleid integer,
+    size text COLLATE pg_catalog."default",
+    quantity integer,
+    CONSTRAINT skus_pkey PRIMARY KEY (id)
+)
+
+CREATE TABLE IF NOT EXISTS public.styles
+(
+    id integer NOT NULL,
+    productid integer,
+    name text COLLATE pg_catalog."default",
+    sale_price text COLLATE pg_catalog."default",
+    original_price text COLLATE pg_catalog."default",
+    default_style boolean,
+    CONSTRAINT styles_pkey PRIMARY KEY (id)
+)
+
+COPY public.products
+FROM 'path to the csv'
+DELIMITER ','
+CSV HEADER;
+
+COPY public.related
+FROM 'path to the csv'
+DELIMITER ','
+CSV HEADER;
+
+COPY public.skus
+FROM 'path to the csv'
+DELIMITER ','
+CSV HEADER;
+
+END;
