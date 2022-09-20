@@ -20,7 +20,7 @@ app.get('/products/:product_id/related', relatedCtrl.getRelated);
 app.get('/products/:product_id/styles', stylesCtrl.getStyles);
 
 app.listen(port, () => {
-  return console.log(`Express is listening at http://localhost:${port}`);
+  return console.log(`Express is listening at http://44.203.91.104:${port}`);
 });
 
 client.connect();

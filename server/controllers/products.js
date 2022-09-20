@@ -14,6 +14,6 @@ module.exports = {
       .then(result => {
         res.status(201).json(result.rows);
       })
-      .catch(err => res.status(404).json(err))
+      .catch(err => res.status(404).json('bad request'))
   }
 };
