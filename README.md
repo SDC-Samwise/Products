@@ -5,9 +5,9 @@ Atelier is a backend microservice for an E-Commerce website which was scaled in 
 ## Details
 
 ### Step 1:
-Created all the API endpoints and routes. Local benchmarks for each endpoint averaged around 800ms without index, a bulk of that coming from the Styles endpoint. After adding indexing, query speed increased from 3 seconds to 50ms (using PgAdmin) and 10ms (using Postman). 
+Created all the API endpoints and routes. Local benchmarks for each endpoint averaged around 800ms without index, a bulk of that coming from the Styles endpoint. After indexing, query speeds increased from 3 seconds to 50ms (using PgAdmin) and 10ms (using Postman). Local stress test with K6 shows that the breakpoint was at 500VUs.
 
-### Results
+### Local Query Results
 
 | Indexing | Time          |
 | :---     | :----:        |
@@ -15,6 +15,8 @@ Created all the API endpoints and routes. Local benchmarks for each endpoint ave
 | With/PgAdmin     | 0.045 seconds |
 | With/Postman     | 0.01 seconds |
 
+### Local Stress Test
+![k6 Local](images/local_stress.png)
 
 ## Step 2: Implementing Nginx Load Balancer with Round Robin algo around 5 host servers
 
