@@ -20,14 +20,14 @@ After creating all the API endpoints and routes, local benchmarks for each endpo
 
 ## Step 2: Deployment and Cloud Based Testing
 
-Initially deployed a single instance on AWS, I found that server location greatly affected RPS and response latency. This server, based in N.Virginia (US East), had an average reponse time of 500ms. In order to improve speeds, I created a copy of the server with AWS AMI and deployed across region to N.California (US West). This improved response latency from 500ms to 60ms. Tests via LoaderIO showed breakpoint at 400 RPS.
+Initially deployed a single instance on AWS, I found that server location greatly affected RPS and response latency. This server, based in N.Virginia (US East), had an average reponse time of 500ms. In order to improve speeds, I created a copy of the server with AWS AMI and deployed across region to N.California (US West). This improved response latency from 500ms to 60ms. Tests via LoaderIO showed breakpoint at 400 RPS with average speeds of 65ms.
 
 ### Summary of results
 
-| Clients | Seconds | Error Rate |
-| :---    | :---    | :----:     |
-| 800     | 30      |  0%        |
-| 900     | 30      |  0%        |
+| Server Location | Time          |
+| :---     | :----:        |
+| US East     | 0.5 seconds |
+| US West     | 0.065 seconds |
 
 
 ![loader_io](images/loader_io.png)
