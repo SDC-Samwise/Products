@@ -38,4 +38,4 @@ Initially deployed a single instance on AWS, I found that server location greatl
 Implemented horizontal scaling solution with Nginx Load Balancer as a standalone server along with 4 host servers. This was able to bring my total RPS to 1k with a response time of 65ms. 
 
 ## Results:
-![loader io scaled](images/K6_Pool.png)
+![loader io scaled](images/final_result.PNG)
