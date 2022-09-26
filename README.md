@@ -10,7 +10,7 @@ Created all the API endpoints and routes. Local benchmarks for each endpoint ave
 ### Results
 
 | Indexing | Time          |
-| :---:     | :----:        |
+| :---     | :----:        |
 | Without  | 3.131 seconds |
 | With/PgAdmin     | 0.045 seconds |
 | With/Postman     | 0.01 seconds |
