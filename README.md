@@ -16,7 +16,7 @@ After creating all the API endpoints and routes, local benchmarks for each endpo
 | With/Postman     | 0.010 seconds |
 
 ### Stress Test
-![Local_Stress](Images/Local Stress.PNG)
+![loader_io](images/Local Stress.png)
 
 ## Step 2: Deployment and Cloud Based Testing
 
