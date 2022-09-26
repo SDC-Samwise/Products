@@ -16,7 +16,7 @@ After creating all the API endpoints and routes, local benchmarks for each endpo
 | With/Postman     | 0.010 seconds |
 
 ### Stress Test
-![k6_local](images/250rps_1instance.PNG)
+![k6_local](images/local_stress.PNG)
 
 ## Step 2: Deployment and Cloud Based Testing
 
@@ -31,6 +31,7 @@ Initially deployed a single instance on AWS, I found that server location greatl
 
 
 ![loader_io](images/250rps_1instance.PNG)
+![loader_io](images/400rps_1instance.PNG)
 
 ## Step 3: Scaling
 
