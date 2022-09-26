@@ -1,25 +1,19 @@
-# Products Backend Microservice
+# Atelier Ecommerce Website Backend Microservice
 
-Project Atelier is a backend microservice for an E-Commerce product detail page.  Specifically it's a microservice for the Products portion of the project. The service was scaled in AWS EC2 to use an Nginx Load Balancing Server, 4 Host servers all communicating with a PostgreSQL database. It currently supports 900 clients per second with response latency of 65 ms.
+Atelier is a backend microservice for an E-Commerce website which was scaled in AWS EC2 using an Nginx Load Balancing Server, 4 host servers and PostgreSQL database. It supports 1K RPS with response latency of 65ms (down from 500ms+).
 
-## PostgreSQL Details
+## Details
 
 ### Step 1:
-Benchmarking database: With and without Indexing performance for my one query
+Created all the API endpoints and routes. Local benchmarks for each endpoint averaged around 800ms without index, a bulk of that coming from the Styles endpoint. After adding indexing, query speed increased from 3 seconds to 50ms (using PgAdmin) and 10ms(using Postman). 
 
-### Indexing:
-\* **Without** indexing the database the query took 12.45 seconds
-
-\* **With** indexing the database, the query took 0.077 seconds
-
-![With Index](images/PGAdmin1.png)
-
-### Bottomline
+### Results
 
 | Indexing | Time          |
 | :---     | :----:        |
-| Without  | 12.45 seconds |
-| With     | 0.077 seconds |
+| Without  | 3.131 seconds |
+| With/PgAdmin     | 0.045 seconds |
+| With/Postman     | 0.01 seconds |
 
 
 ## Step 2: Implementing Nginx Load Balancer with Round Robin algo around 5 host servers
