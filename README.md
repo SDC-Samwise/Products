@@ -30,7 +30,9 @@ Initially deployed a single instance on AWS, I found that server location greatl
 | US West     | 0.065 seconds |
 
 ### Stress Test
+250 clients per second for 30 seconds
 ![loader_io](images/250rps_1instance.PNG)
+400 clients per second for 30 seconds
 ![loader_io](images/400rps_1instance.PNG)
 
 ## Step 3: Scaling
