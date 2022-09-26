@@ -1,16 +1,16 @@
-# Atelier Ecommerce Website Backend Microservice
+# Atelier Ecommerce Backend Microservice
 
 Atelier is a backend microservice for an E-Commerce website which was scaled in AWS EC2 using an Nginx Load Balancing Server, 4 host servers and PostgreSQL database. It supports 1K RPS with response latency of 65ms (down from 500ms+).
 
 ## Details
 
 ### Step 1:
-Created all the API endpoints and routes. Local benchmarks for each endpoint averaged around 800ms without index, a bulk of that coming from the Styles endpoint. After adding indexing, query speed increased from 3 seconds to 50ms (using PgAdmin) and 10ms(using Postman). 
+Created all the API endpoints and routes. Local benchmarks for each endpoint averaged around 800ms without index, a bulk of that coming from the Styles endpoint. After adding indexing, query speed increased from 3 seconds to 50ms (using PgAdmin) and 10ms (using Postman). 
 
 ### Results
 
 | Indexing | Time          |
-| :---     | :----:        |
+| :---:     | :----:        |
 | Without  | 3.131 seconds |
 | With/PgAdmin     | 0.045 seconds |
 | With/Postman     | 0.01 seconds |
