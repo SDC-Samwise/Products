@@ -4,10 +4,10 @@ Atelier is a backend microservice for an E-Commerce website which was scaled in 
 
 ## Details
 
-### Step 1:
-Created all the API endpoints and routes. Local benchmarks for each endpoint averaged around 800ms without index, a bulk of that coming from the Styles endpoint. After indexing, query speeds increased from 3 seconds to 50ms (using PgAdmin) and 10ms (using Postman). Local stress test with K6 shows that the breakpoint was at 500VUs.
+### Step 1: API Endpoints and Local testing
+After creating all the API endpoints and routes, local benchmarks for each endpoint averaged around 800ms. After indexing, query speeds increased from 3 seconds to 50ms (using PgAdmin) and 10ms (using Postman). Local stress test with K6 shows that the breakpoint was at 500VUs (virtual users) per second.
 
-### Local Query Results
+### Query Results
 
 | Indexing | Time          |
 | :---     | :----:        |
@@ -15,16 +15,12 @@ Created all the API endpoints and routes. Local benchmarks for each endpoint ave
 | With/PgAdmin     | 0.045 seconds |
 | With/Postman     | 0.01 seconds |
 
-### Local Stress Test
+### Stress Test
 ![k6 Local](images/local_stress.png)
 
-## Step 2: Implementing Nginx Load Balancer with Round Robin algo around 5 host servers
+## Step 2: Deployment and Cloud Based Testing
 
-In testing I configured 1 AWS EC2 instance of the backend.  I ran test on it and noticed it quickly failed as I increased traffic.
-
-I then created an Amazon Machine Image of the EC2 instance and used AWS to create 4 more images using the AMI.
-
-I configured a 6th EC2 instance running Nginx as a load balancer and retested with [loader.io](https://loader.io/).
+Initially deployed a single instance on AWS, I found that server location greatly affected RPS and response latency. This server, based in N.Virginia (US East), had an average reponse time of 500ms. In order to improve speeds, I created a copy of the server with AWS AMI and deployed across region to N.California (US West). This improved response latency from 500ms to 60ms. Tests via LoaderIO showed breakpoint at 400 RPS.
 
 ### Summary of results
 
