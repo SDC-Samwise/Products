@@ -30,7 +30,7 @@ Initially deployed a single instance on AWS, I found that server location greatl
 | US West     | 0.065 seconds |
 
 
-![loader_io](images/loader_io.png)
+![loader_io](images/Local Stress.png)
 
 ## Step 3: Scaling
 
